@@ -38,14 +38,94 @@ End with an example of getting some data out of the system or using it for a lit
     
     The web page was done first using JavaScript data (and not database data received from the Java program)
     
-                                                    Date Tested
+                                                                                             Date Tested
     
     Web Page
     ========
-    Home page                                       06-JUN-2022
-    List page                                       06-JUN-2022
+    Home page  
+            three button should be on this page
+            'actor', 'location', 'movie'. This is a 
+            header and should be on all the pages
+            
+            a message with an explation of what happens
+            when these button are clicked.
+                                                                                             06-JUN-2022
+    
+    List page 
+        The header should be present 
+        
+        click 'actor' on the home page a list of actor names
+        in alphbetical order should appear on the screen 
+                                                                                             06-JUN-2022
+        click 'location' on the home page a list of cities
+        in alphbetical order should appear on the screen 
+                                                                                             06-JUN-2022
+        click 'movie' on the home page a list of movies
+        in alphbetical order should appear on the screen 
+                                                                                             06-JUN-2022
+                                                    
+        Each list entry (actor, location or movie) should have
+        three buttons next to them 'view', 'change' and 'delete'
+        
+        At the botton of the list should be an 'add' button
+                                                                                             06-JUN-2022
+                                                   
+    Add Page 
+        The header should be present
+        
+        Click 'add' on the list page to reveal a user input page
+        
+        All columns (except id) should be present for the user to enter data
+        
+        a 'submit' button at the bottom
+
+        a 'list' button
+                                                                                             06-JUN-2022
+        
+        location
+            click 'submit' without a city, county or country will display a message prompting
+            the user a enter these things
+
+            click 'submit' will add a location to a javaScript array called 'location'
+            all input fields will to cleared and a message will display the status of the insert
+            e.g 'city' has been add successfully
+            
+            'city' will be the name of the city added
+                                                                                            06-JUN-2022
+                                                                                            
+        actor
+            click 'submit' without a surname will display a message prompting
+            the user a enter a surname
+
+            click 'submit' will add an actor row to a javaScript array called 'actor'
+            all input fields will to cleared and a message will display the status of the insert
+            e.g 'name' has been add successfully
+            
+            'name' will be the name of the actor added
+                                                                                             06-JUN-2022 
+                                                                                             
+       movie
+            click 'submit' without a title will display a message prompting
+            the user a enter a title
+
+            click 'submit' will add n movie row to a javaScript array called 'movie'
+            all input fields will to cleared and a message will display the status of the insert
+            e.g 'title' has been add successfully
+            
+            'title' will be the name of the movie added
+                                                                                             08-JUN-2022                                                                                     
+        
+      click 'list' will return the user to the 'list' page, so see than the actor, location or movie
+      has been successfully added
+
+               'location'                                                                              06-JUN-2022
+               
+               'actor'                                                                                 06-JUN-2022
+               
+               'movie'                                                                                 08-JUN-2022
+    
     View page                                       06-JUN-2022
-    Add page                                        06-JUN-2022
+   
     Delete page                                     06-JUN-2022
     Change page                                     07-JUN-2022
     
