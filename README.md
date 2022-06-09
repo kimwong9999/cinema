@@ -9,7 +9,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-This version uses a browser and the H2 database and is written in Java Spring Boot run on Ecclipse 
+This version uses a browser and was written javaScript with Java using Ecclipse and Spring Boot . The H2 database was the primary datasourse
 
 ### System
 
