@@ -49,26 +49,47 @@ End with an example of getting some data out of the system or using it for a lit
             
             a message with an explation of what happens
             when these button are clicked.
-                                                                                             06-JUN-2022
+                                                                                            06-JUN-2022
     
     List page 
         The header should be present 
         
         click 'actor' on the home page a list of actor names
         in alphbetical order should appear on the screen 
-                                                                                             06-JUN-2022
+                                                                                            06-JUN-2022
         click 'location' on the home page a list of cities
         in alphbetical order should appear on the screen 
-                                                                                             06-JUN-2022
+                                                                                            06-JUN-2022
         click 'movie' on the home page a list of movies
         in alphbetical order should appear on the screen 
-                                                                                             06-JUN-2022
+                                                                                            06-JUN-2022
                                                     
         Each list entry (actor, location or movie) should have
         three buttons next to them 'view', 'change' and 'delete'
         
         At the botton of the list should be an 'add' button
-                                                                                             06-JUN-2022
+                                                                                            06-JUN-2022
+                                                                                             
+        Click 'add' to go to the add page
+             location                                                                       06-JUN-2022
+             actor                                                                          06-JUN-2022
+             movie                                                                          08-JUN-2022
+             
+        Click 'view' to go to the view page
+             location                                                                       06-JUN-2022
+             actor                                                                          06-JUN-2022
+             movie                                                                          08-JUN-2022
+        
+        Click 'change' to go to the change page
+             location                                                                        06-JUN-2022
+             actor                                                                           06-JUN-2022
+             movie                                                                           08-JUN-2022
+       
+        Click 'delete' to go to the delete page
+             location                                                                        06-JUN-2022
+             actor                                                                           06-JUN-2022
+             movie                                                                           08-JUN-2022
+             
                                                    
     Add Page 
         The header should be present
@@ -102,7 +123,7 @@ End with an example of getting some data out of the system or using it for a lit
             e.g 'name' has been add successfully
             
             'name' will be the name of the actor added
-                                                                                             06-JUN-2022 
+                                                                                                        06-JUN-2022 
                                                                                              
        movie
             click 'submit' without a title will display a message prompting
@@ -113,20 +134,75 @@ End with an example of getting some data out of the system or using it for a lit
             e.g 'title' has been add successfully
             
             'title' will be the name of the movie added
-                                                                                             08-JUN-2022                                                                                     
+                                                                                                        08-JUN-2022                                                                                     
         
       click 'list' will return the user to the 'list' page, so see than the actor, location or movie
       has been successfully added
 
-               'location'                                                                              06-JUN-2022
+               'location'                                                                               06-JUN-2022
                
-               'actor'                                                                                 06-JUN-2022
+               'actor'                                                                                  06-JUN-2022
                
-               'movie'                                                                                 08-JUN-2022
+               'movie'                                                                                  08-JUN-2022
     
-    View page                                       06-JUN-2022
+    View page
+        the header should be present
+        
+        buttons 'list', 'change' and 'delete' should be at the bottom
+        
+        All columns of the table (except the id) should display
+        in an un-updatable fashion
+               'location'                                                                               06-JUN-2022
+               'actor'                                                                                  06-JUN-2022
+               'movie'                                                                                  08-JUN-2022
+               
+        Click 'list' to go back to the list page
+               'location'                                                                               06-JUN-2022
+               'actor'                                                                                  06-JUN-2022
+               'movie'                                                                                  08-JUN-2022
+               
+        Click 'change' to go to the change page for the actor, location or movie
+               location                                                                                 06-JUN-2022
+               actor                                                                                    06-JUN-2022
+               movie                                                                                    08-JUN-2022
+               
+        Click 'delete' to go to the change page for the actor, location or movie
+               location                                                                                 06-JUN-2022
+               actor                                                                                    06-JUN-2022
+               movie                                                                                    08-JUN-2022
    
-    Delete page                                     06-JUN-2022
+    Delete page
+        The header should be present
+        
+        A message asking the user to confirm the delete
+       
+        Two buttons 'yes' and 'no' under the message
+        
+        'list', 'view' and 'change' button at the bottom
+        
+                                                                                                        06-JUN-2022
+                                                                                                        
+        Click 'no' to go to the list page
+            location                                                                                    06-JUN-2022
+            actor                                                                                       06-JUN-2022
+            movie                                                                                       08-JUN-2022
+            
+        Click 'list' to go to the list page
+            location                                                                                    06-JUN-2022
+            actor                                                                                       06-JUN-2022
+            movie                                                                                       08-JUN-2022
+            
+        Click 'change' to go to the change page
+            location                                                                                    06-JUN-2022
+            actor                                                                                       06-JUN-2022
+            movie                                                                                       08-JUN-2022
+            
+       Click 'view' to go to the view page
+            location                                                                                    06-JUN-2022
+            actor                                                                                       06-JUN-2022
+            movie                                                                                       08-JUN-2022
+    
+    06-JUN-2022
     Change page                                     07-JUN-2022
     
     The creation of the tables was done by Java via Ecclipse, first of all just creating the tables. The using the web site to add, update etc. the
