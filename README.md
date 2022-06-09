@@ -201,9 +201,61 @@ End with an example of getting some data out of the system or using it for a lit
             location                                                                                    06-JUN-2022
             actor                                                                                       06-JUN-2022
             movie                                                                                       08-JUN-2022
+            
+       Click 'yes' to confirm delete a message will appear on the screen confirning the deletion. Clicking the 'list'
+       button will show that city, acotr or movie no longer appears on the list
+            location                                                                                    06-JUN-2022
+            actor                                                                                       06-JUN-2022
+            movie                                                                                       08-JUN-2022
     
-    06-JUN-2022
-    Change page                                     07-JUN-2022
+    
+    Change page
+        The header page should appear
+        The data for the selected actor, location or movie should appear (except the id) in 
+        an updatable form
+            
+        a 'submit' button
+        a 'list' button
+        a 'delete' button
+            
+        location                                                                                        07-JUN-2022
+        actor                                                                                           07-JUN-2022
+        movie                                                                                           08-JUN-2022
+        
+        click on 'list' should go to the list page
+            location                                                                                    07-JUN-2022
+            actor                                                                                       07-JUN-2022
+            movie                                                                                       08-JUN-2022
+
+        click on 'delete' should go to the delete page
+            location                                                                                    07-JUN-2022
+            actor                                                                                       07-JUN-2022
+            movie                                                                                       08-JUN-2022
+            
+        location
+            click the 'submit' button with empty fields will result in a message prompt the user to enter
+            the city, county and country 
+            
+            click the 'submit' button will all fields filled will add the record and a message will appear showing
+            the status of the change. Click on 'view' (or 'list' and then 'view') to confim the change
+                                                                                                        07-JUN-2022
+                                                                                                        
+        actor
+            click the 'submit' button with an empty surname will result in a message prompt the user to enter
+            a surname
+            
+            click the 'submit' button will the surname filled will add the record and a message will appear showing
+            the status of the change. Click on 'view' (or 'list' and then 'view') to confim the change
+                                                                                                        07-JUN-2022  
+                                                                                                        
+        movie
+            click the 'submit' button with an empty title will result in a message prompt the user to enter
+            the title
+            
+            click the 'submit' button will the title filled will add the record and a message will appear showing
+            the status of the change. Click on 'view' (or 'list' and then 'view') to confim the change
+                                                                                                        08-JUN-2022                                                                                                       
+           
     
     The creation of the tables was done by Java via Ecclipse, first of all just creating the tables. The using the web site to add, update etc. the
     tables
