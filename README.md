@@ -27,12 +27,15 @@ ACTOR
     dpalce  - location of death taken the the LOCATION table (one-to-one relationship)
     
 LOCATION    
+    
     id
     city
     county
     country
     
 MOVIE   
+   
+    id
     title        - title of the movie
     article     - 'a', 'an', 'the'
     release     - year of movie release
