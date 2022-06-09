@@ -31,32 +31,19 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
+## Tests
 
-Explain how to run the automated tests for this system. Break down into which tests and what they do
-
-### Unit Tests 
-
-Explain what these tests test, why and how to run them
-
-```
-Give an example
-```
-
-### Integration Tests 
-Explain what these tests test, why and how to run them
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
+                                                   Date Tested
+    Table Location
+    ==============
+    Create Location table                           06-JUN-2022
+    Add Location (insert)                           06-JUN-2022
+    List Location cities (list)                     06-JUN-2022
+    Display Location Details (view)                 06-JUN-2022
+    Delete Location (delete)                        06-JUN-2022
+    Change Location details (update)                07-JUN-2022
+ 
+    
 
 ## Deployment
 
