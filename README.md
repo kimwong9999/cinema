@@ -3,10 +3,6 @@ Coverage: 34%
 
 Cinema
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 ### Prerequisites
 
 This version uses a browser and was written javaScript with Java using Ecclipse and Spring Boot . The H2 database was the primary datasourse
@@ -24,7 +20,7 @@ ACTOR
     bdate   - birth date
     bplace  - locaton of birth taken from the LOCATION table (one-to-one relationship)
     ddate   - date of death
-    dpalce  - location of death taken the the LOCATION table (one-to-one relationship)
+    dplace  - location of death taken the the LOCATION table (one-to-one relationship)
     
 LOCATION    
     
@@ -45,6 +41,15 @@ MOVIE
     cast        - a list of actors taken from the ACTOR table (many-to-many relationship)
     
 
+## Risk Assessment
+
+    loss of power
+    PC breaking down
+    My house goes up on fire
+    Contact a deadly desease
+    Lose internet connection
+    coming of the biblical apocalypse as promised by Jesus Christ
+    
 ## Tests
 
     Most testing was done via the web page, making sure that the relevant page displayed the right details, for example for the 'view' page
