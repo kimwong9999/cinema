@@ -36,7 +36,7 @@ LOCATION
 MOVIE   
    
     id
-    title        - title of the movie
+    title       - title of the movie
     article     - 'a', 'an', 'the'
     release     - year of movie release
     duration    - length of film in minutes
