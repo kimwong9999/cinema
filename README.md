@@ -16,6 +16,7 @@ This version uses the H2 database. It can also use the MySQL database. Primarily
 The system has three database entities Actor, Location and Movie. 
 
 ACTOR
+    
     id      
     sname   - surname
     fname   - firstname
