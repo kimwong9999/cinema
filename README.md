@@ -33,7 +33,25 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Tests
 
-                                                   Date Tested
+    Most testing was done via the web page, making sure that the relevant page displayed the right details, for example for the 'view' page
+    the test was complete if the page showed all the data of the table (exept the user id)
+    
+    The web page was done first using JavaScript data (and not database data received from the Java program)
+    
+                                                    Date Tested
+    
+    Web Page
+    ========
+    Home page                                       06-JUN-2022
+    List page                                       06-JUN-2022
+    View page                                       06-JUN-2022
+    Add page                                        06-JUN-2022
+    Delete page                                     06-JUN-2022
+    Change page                                     07-JUN-2022
+    
+    The creation of the tables was done by Java via Ecclipse, first of all just creating the tables. The using the web site to add, update etc. the
+    tables
+    
     Table Location
     ==============
     Create Location table                           06-JUN-2022
@@ -42,6 +60,24 @@ End with an example of getting some data out of the system or using it for a lit
     Display Location Details (view)                 06-JUN-2022
     Delete Location (delete)                        06-JUN-2022
     Change Location details (update)                07-JUN-2022
+    
+    Table Actor
+    ==============
+    Create Actor table                              06-JUN-2022
+    Add Actor (insert)                              06-JUN-2022
+    List Actor names (list)                         06-JUN-2022
+    Display Actor Details (view)                    06-JUN-2022
+    Delete Actor (delete)                           06-JUN-2022
+    Change Actor details (update)                   07-JUN-2022
+    
+    Table Movie
+    ==============
+    Create Movie table                              08-JUN-2022
+    Add Movie (insert)                              08-JUN-2022
+    List Movie cities (list)                        08-JUN-2022
+    Display Movie Details (view)                    08-JUN-2022
+    Delete Movie (delete)                           08-JUN-2022
+    Change Movie details (update)                   08-JUN-2022
  
     
 
