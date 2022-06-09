@@ -21,9 +21,9 @@ ACTOR
     fname   - firstname
     bname   - name at birth
     bdate   - birth date
-    bplace  - locaton of birth taken from the LOCATION table
+    bplace  - locaton of birth taken from the LOCATION table (one-to-one relationship)
     ddate   - date of death
-    dpalce  - location of death taken the the LOCATION table
+    dpalce  - location of death taken the the LOCATION table (one-to-one relationship)
     
 LOCATION    
     id
@@ -38,7 +38,7 @@ MOVIE
     duration    - length of film in minutes
     chroma      - colour or black and white
     ration      - 4:3, 2.5:1 etc
-    cast        - a list of actors taken from the ACTOR table
+    cast        - a list of actors taken from the ACTOR table (many-tomany-relationship)
     
 
 ## Tests
@@ -267,16 +267,17 @@ MOVIE
                                                                                                         08-JUN-2022                                                                                                       
            
     
-    The creation of the tables was done by Java via Ecclipse, first of all just creating the tables. Then using the web site, add, update etc. to
-    test the links created in the Java progrom. Some test were done using postman
+    The creation of the tables was done by Java via Ecclipse, first of all just creating the tables. The links were created in
+    the Java program then added to the website. The web site wasused to test these links along observing the changed on the h2 database,
+    some tests were done using postman.
     
     Table Location
     ==============
     Create Location table                                                                               07-JUN-2022
     
     List locations
-        Using web page, a message shouild appear saying 'table is empty'                                07-JUN-2022
-    Add Location (insert)                           
+        Using web page, a message should appear saying 'table is empty'                                07-JUN-2022
+    Add Location                           
         using postman                                                                                   07-JUN-2022
         using web site (add page)                                                                       07-JUN-2022
     List Location cities 
@@ -294,20 +295,43 @@ MOVIE
     List actor names
         Using web page, a message shouild appear saying 'table is empty'                                07-JUN-2022
         
-    Add Actor (insert)                              06-JUN-2022
-    List Actor names (list)                         06-JUN-2022
-    Display Actor Details (view)                    06-JUN-2022
-    Delete Actor (delete)                           06-JUN-2022
-    Change Actor details (update)                   07-JUN-2022
+    Add Actor 
+        add an actor without locatons
+        using postman                                                                                   07-JUN-2022
+        using web site (add page) and h2                                                                07-JUN-2022
+        with locations using postman, wesite and h2                                                     08-JUN-2022
+                
+    List Actor names 
+        using web page (list)                                                                           07-JUN-2022
+    Display Actor Details 
+        without locations using web page (view)                                                         07-JUN-2022
+        with locations using postman, website and h2                                                    08-JUN-2022
+    Delete Actor 
+        using web page (delete) and h2                                                                  07-JUN-2022
+    Change Actor details 
+        without locations using web site (update) and h2                                                07-JUN-2022
+        with locations using postman, web site and h2                                                   08-JUN-2022
     
     Table Movie
     ==============
-    Create Movie table                              08-JUN-2022
-    Add Movie (insert)                              08-JUN-2022
-    List Movie cities (list)                        08-JUN-2022
-    Display Movie Details (view)                    08-JUN-2022
-    Delete Movie (delete)                           08-JUN-2022
-    Change Movie details (update)                   08-JUN-2022
+    Create Movie table                                                                                  08-JUN-2022
+    
+    List Movie title 
+        Using web page (list) a message should appear saying 'table is empty'                           08-JUN-2022
+    
+    Add Movie 
+        without cast using website (add)                                                                08-JUN-2022
+        with cast using postman, website and h2                                                         09-JUN-2022
+    List Movie cities 
+        using website (list)                                                                            08-JUN-2022
+    Display Movie Details 
+        without cast using website (view)                                                               08-JUN-2022
+        with cast using postman, website (view) and h2                                                  09-JUN-2022
+    Delete Movie 
+        using webstie (delete) and h2                                                                   08-JUN-2022
+    Change Movie details 
+        without cast using website (update) and h2                                                      08-JUN-2022
+        wit cast using postman, website and h2                                                          09-JUN-2022
  
     
 
