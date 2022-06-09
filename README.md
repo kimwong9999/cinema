@@ -361,7 +361,7 @@ Version 1
 
 * Kim Wong 
 * GitHub: https://github.com/kimwong9999/cinema 
-* Jira: https://kimwong.atlassian.net/jira/software/projects/CIN/boards/3
+* Jira: https://kimwong.atlassian.net/jira/software/projects/CIN/boards/3/backlog
 
 
 
