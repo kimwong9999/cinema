@@ -9,11 +9,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+This version uses the H2 database. It can also use the MySQL database. Primarily run on Ecclipse 
 
-```
-Give examples
-```
+
 
 ### Installing
 
@@ -66,24 +64,15 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Maven](https://maven.apache.org/) - Dependency Management
+Java Spring Boot using Ecclipse
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning.
+Version 1
 
 ## Authors
 
-* **Chris Perrins** - *Initial work* - [christophperrins](https://github.com/christophperrins)
+* Kim Wong GitHub: https://github.com/kimwong9999/cinema Jira: https://kimwong.atlassian.net/jira/software/projects/CIN/boards/3
 
-## License
 
-This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md) file for details 
 
-*For help in [Choosing a license](https://choosealicense.com/)*
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
