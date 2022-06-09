@@ -11,25 +11,35 @@ These instructions will get you a copy of the project up and running on your loc
 
 This version uses the H2 database. It can also use the MySQL database. Primarily run on Ecclipse 
 
+### System
 
+The system has three database entities Actor, Location and Movie. 
 
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+ACTOR
+    id      
+    sname   - surname
+    fname   - firstname
+    bname   - name at birth
+    bdate   - birth date
+    bplace  - locaton of birth taken from the LOCATION table
+    ddate   - date of death
+    dpalce  - location of death taken the the LOCATION table
+    
+LOCATION    
+    id
+    city
+    county
+    country
+    
+MOVIE   
+    title        - title of the movie
+    article     - 'a', 'an', 'the'
+    release     - year of movie release
+    duration    - length of film in minutes
+    chroma      - colour or black and white
+    ration      - 4:3, 2.5:1 etc
+    cast        - a list of actors taken from the ACTOR table
+    
 
 ## Tests
 
@@ -257,21 +267,33 @@ End with an example of getting some data out of the system or using it for a lit
                                                                                                         08-JUN-2022                                                                                                       
            
     
-    The creation of the tables was done by Java via Ecclipse, first of all just creating the tables. The using the web site to add, update etc. the
-    tables
+    The creation of the tables was done by Java via Ecclipse, first of all just creating the tables. Then using the web site, add, update etc. to
+    test the links created in the Java progrom. Some test were done using postman
     
     Table Location
     ==============
-    Create Location table                           06-JUN-2022
-    Add Location (insert)                           06-JUN-2022
-    List Location cities (list)                     06-JUN-2022
-    Display Location Details (view)                 06-JUN-2022
-    Delete Location (delete)                        06-JUN-2022
-    Change Location details (update)                07-JUN-2022
+    Create Location table                                                                               07-JUN-2022
+    
+    List locations
+        Using web page, a message shouild appear saying 'table is empty'                                07-JUN-2022
+    Add Location (insert)                           
+        using postman                                                                                   07-JUN-2022
+        using web site (add page)                                                                       07-JUN-2022
+    List Location cities 
+        using web page                                                                                  07-JUN-2022
+    Display Location Details 
+        using web site (view)                                                                           07-JUN-2022
+    Delete Location 
+        using web site (delete)                                                                         07-JUN-2022
+    Change Location details 
+        using web site (update)                                                                         07-JUN-2022
     
     Table Actor
     ==============
-    Create Actor table                              06-JUN-2022
+    Create Actor table                                                                                  07-JUN-2022
+    List actor names
+        Using web page, a message shouild appear saying 'table is empty'                                07-JUN-2022
+        
     Add Actor (insert)                              06-JUN-2022
     List Actor names (list)                         06-JUN-2022
     Display Actor Details (view)                    06-JUN-2022
