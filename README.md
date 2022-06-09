@@ -42,7 +42,7 @@ MOVIE
     duration    - length of film in minutes
     chroma      - colour or black and white
     ration      - 4:3, 2.5:1 etc
-    cast        - a list of actors taken from the ACTOR table (many-tomany-relationship)
+    cast        - a list of actors taken from the ACTOR table (many-to-many relationship)
     
 
 ## Tests
