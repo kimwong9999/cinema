@@ -62,9 +62,8 @@ MOVIE
     Web Page
     ========
     Home page  
-            three button should be on this page
-            'actor', 'location', 'movie'. This is a 
-            header and should be on all the pages
+        the title 'cinema' and three buttons should be on this page 'actor', 'location', 'movie'. 
+        This is the header and should be on all the pages
             
             a message with an explation of what happens
             when these button are clicked.
