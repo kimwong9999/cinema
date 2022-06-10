@@ -1,1 +1,1909 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>cinema</title>
+<style>
+.title
+{
+	background-color:transparent;
+	border:none;
+	font-family:trebuchet ms;
+	font-size:10vh;
+	text-shadow:-2px -2px white;
+	color:black;
+	text-align:center;
+}
+.title:hover
+{
+	border:none;
+}
+.subtitle
+{
+	font-family:verdana;
+	font-size:5vh;
+}
+.menu
+{
+	background-color:#E5E4E2;
+	border: 2px solid black;
+	border-radius:5px;
+	color:black;
+	width:10vw;
+	cursor:pointer
+}
+.menu:hover
+{
+	background-color:black;
+	border-color:#E5E4E2;
+	color:#E5E4E2;
+}
+.actor-button
+{
+	background-color:#56A5EC;
+	border:2px solid midnightblue;
+	border-radius:5px;
+	color:midnightblue;
+	width:5vw;
+	margin:1vw;
+	text-align:center;
+	cursor:pointer;
+}
+.actor-button:hover
+{
+	background-color:midnightblue;
+	border-color:#56A5EC;
+	color:#56A5EC;
+}
+.actor-name
+{
+	font-family:verdana;
+	font-size:2vw;
+	color:blue;
+}
+.actor-label
+{
+	font-size:1.5vw;
+	color:darkblue;
+}
+.actor-data
+{
+	font-size:1.5vw;
+	font-style:italic;
+	color:teal;
+}
+.location-button
+{
+	background-color:#98FF98;
+	border:2px solid #347C17;
+	border-radius:5px;
+	color:#347C17;
+	width:5vw;
+	margin:1vw;
+	text-align:center;
+	cursor:pointer;
+}
+.location-button:hover
+{
+	background-color:#347C17;
+	border-color:#98FF98;
+	color:#98FF98;
+}
+.location-name
+{
+	font-family:verdana;
+	font-size:2vw;
+	color:green;
+}
+.location-label
+{
+	font-size:1.5vw;
+	color:green;
+}
+.location-data
+{
+	font-size:1.5vw;
+	font-style:italic;
+	color:ferngreen;
+}
+.movie-name
+{
+	font-family:verdana;
+	font-size:1.8vw;
+	color:#FFE5B4;
+}
+.movie-button
+{
+	background-color:#FF8040;
+	border:2px solid #493D26;
+	border-radius:5px;
+	color:#493D26;
+	width:5vw;
+	margin:1vw;
+	text-align:center;
+	cursor:pointer;
+}
+.movie-button:hover
+{
+	background-color:#493D26;
+	border-color:#FF8040;
+	color:#FF8040;
+}
+.movie-label
+{
+	font-family:arial;
+	font-size:1.5vw;
+	color:darkbrown;
+}
+.movie-data
+{
+	font-size:1.5vw;
+	font-style:italic;
+	color:brown;
+}
+</style>
+<script>
+class Actor
+{
+	constructor(id, sname, fname, bname, bdate, bplace, ddate, dplace)
+	{
+		this.id		= id;
+		this.sname	= sname;
+		this.fname	= fname;
+		this.bname	= bname;
+		this.bdate	= bdate;
+		this.bplace	= bplace;
+		this.ddate	= ddate;
+		this.dplace	= dplace;
+	}
 
+	name(type='d')
+	{
+	/*
+		Return the name for a particular actors id
+		
+		d - return the name in fhr format of  fname + ' ' + sname
+		l - return the name in the format of sname + ', ' fname
+	*/
+		let name = '';
+
+		if (this.fname == '')
+		{
+			name = this.sname.substring(0,1).toUpperCase() + this.sname.substring(1, this.sname.length).toLowerCase();	
+		}
+		else
+		{
+			if (type == 'd')
+			{
+				name = this.fname.substring(0,1).toUpperCase() + this.fname.substring(1, this.fname.length).toLowerCase() + ' ' + this.sname.substring(0,1).toUpperCase() + this.sname.substring(1, this.sname.length).toLowerCase();
+			}
+			else
+			{
+				name = this.sname.substring(0,1).toUpperCase() + this.sname.substring(1, this.sname.length).toLowerCase() + ', ' + this.fname.substring(0,1).toUpperCase() + this.fname.substring(1, this.fname.length).toLowerCase();
+			}
+		}
+
+		return name;
+	}
+
+	date(type='b')
+	{
+	/*
+		Returns a formatted date for a person (id)  input date must be of the format yyyy-mmm-dd
+
+		b - will use the person birth date
+		d - will use the person death date
+	*/	
+
+		let month = {'JAN':'January', 'FEB':'February', 'MAR':'March', 'APR':'April', 'MAY':'May', 'JUN':'June', 'JUL':'July', 'AUG':'August', 'SEP':'September', 'OCT':'October', 'NOV':'November', 'DEC':'December'}
+		let ord = {'01':'1st', '02':'2nd', '03':'3rd', '21':'21st', '22':'22nd', '23':'23rd', '31':'31st'}
+		let date = '';
+		
+		let dt = '';
+		(type == 'b') ? dt = this.bdate : dt = this.ddate;
+
+		if (dt != '')
+		{
+			let arr = dt.split('-');
+
+			let od = '';
+			ord[arr[2]] ? od = ord[arr[2]] : od = parseInt(arr[2]) + 'th';
+			date = od + ' ' + month[arr[1]] + ' ' + arr[0];
+		}
+
+		
+		return date;
+	}
+
+	day(type='b')
+	{
+		let dt = '';
+		type == 'b' ? dt = this.bdate : dt = this.ddate;
+
+		let day = dt.substr(9,2);
+
+		return day;
+	}
+	month(type='b')
+	{
+		let dt = '';
+		type == 'b' ? dt = this.bdate : dt = this.ddate;
+
+		let month = dt.substr(5,3);
+
+		return month;
+	}
+	year(type='b')
+	{
+		let dt = '';
+		type == 'b' ? dt = this.bdate : dt = this.ddate;
+
+		let year = dt.substr(0,4);
+
+		return year;
+	}
+}
+class Location
+{
+	constructor(id, city, county, country, desc)
+	{
+		this.id		= id;
+		this.city	= city;
+		this.county	= county;
+		this.country	= country;
+
+	}
+}
+class Movie
+{
+	constructor(id, title, article, release, duration, chroma, ratio, cast)
+	{
+		this.id		= id;
+		this.title	= title;
+		this.article	= article;
+		this.release	= release;
+		this.duration	= duration;
+		this.chroma	= chroma;
+		this.ratio	= ratio;
+		this.cast = cast;
+	}
+
+	name(type='')
+	{
+		let title = '';
+		
+		if (this.article == '')
+		{
+			title = this.title;	
+		}
+		else
+		{
+			if (type == 'd')
+			{
+				title = this.article + ' ' + this.title;
+			}
+			else
+			{
+				title = this.title + ', ' + this.article;
+			}
+		}
+
+		return title;
+	}
+
+	length()
+	{
+
+		let duration = '';
+
+		let minutes = this.duration % 60;
+  		let hours = Math.floor(this.duration / 60);
+
+		if (minutes == 0)
+		{
+			if (hours == 1)
+			{
+				duration = '1 hr';
+			}
+			else
+			{
+				duration = hours + ' hrs';
+			}
+		}
+		else
+		{
+			if (hours == 1)
+			{
+				duration = '1 hr ' + minutes + ' minutes';
+			}
+			else
+			{
+				duration = hours + ' hrs ' + minutes + ' minutes';
+			}
+		}
+
+		return duration;
+	}
+}
+let selected = {colour:'', item:'', id:'', name:'', title:''}
+let colour = 
+	{home:{back:'grey', text:'black'}
+	,actor:{back:'lightblue', text:'blue', list:'skyblue'}
+	,location: {back:'lightgreen', text:'green', list:'#6CBB3C'}
+	,movie: {back:'#CD7F32', text:'orange', list:'#EE9A4D'}
+	}
+let button = {}
+let select = {}
+let database = {location:[], actors:[], movie:[], actor:[]}
+let castlist = [];
+</script>
+</head>
+
+
+
+
+<body onload="Home()">
+<div id="page"></div>
+<div id="actor-input" style="display:none">
+	<div align="center">
+		<table cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+			<td class="actor-label">First Name</td>
+			<td><input type="text" class="actor-data" id="fname"></td>
+		</tr>
+		<tr>
+			<td class="actor-label">Surame</td>
+			<td><input type="text" class="actor-data" id="sname"></td>
+		</tr>
+		<tr>
+			<td class="actor-label">Birth Name</td>
+			<td><input type="text" class="actor-data" id="bname"></td>
+		</tr>
+		<tr>
+			<td class="actor-label">Date of Birth</td>
+			<td>
+				[BdayOptions]
+				[BmonthOptions]
+				[ByearOptions]
+			</td>
+		</tr>
+		<tr>
+			<td class="actor-label">Birth Place</td>
+			<td>[BplaceOptions]</td>
+		</tr>
+		<tr>
+			<td class="actor-label">Date of Death</td>
+			<td>
+				[DdayOptions]
+				[DmonthOptions]
+				[DyearOptions]
+			</td>
+		</tr>
+				<tr>
+			<td class="actor-label">Death Place</td>
+			<td>[DplaceOptions]</td>
+		</tr>
+		<tr>
+			<td colspan="100%"><input type="text" id="actor-message" style="background-color:transparent;border:none;width:30vw"></td>
+		</tr>
+		</table>
+		<div>	
+			<input type="hidden" id="id">
+			<input type="button" class="actor-button" value="submit" onclick="ValidateActor('[Action]')">
+			<input type="button" class="actor-button" value="list" onclick="List('actor')">
+			<br><br>NOTE: If the year is set to 1850 then the date will be blank
+		</div>
+	</div>
+</div>
+<div id="location-input" style="display:none">
+	<div align="center">
+		<table cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+			<td class="location-label">City</td>
+			<td><input type="text" class="location-data" id="city" required></td>
+		</tr>
+		<tr>
+			<td class="location-label">County/State</td>
+			<td><input type="text" class="location-data" id="county" required></td>
+		</tr>
+		<tr>
+			<td class="location-label">Country</td>
+			<td><input type="text" class="location-data" id="country" required></td>
+		</tr>
+		<tr>
+			<td colspan="100%"><input type="text" id="location-message" style="background-color:transparent;border:none;width:30vw"></td>
+		</tr>
+		</table>
+		<div>	
+			<input type="hidden" id="id">
+			<input type="button" class="location-button" value="submit" onclick="ValidateLocation('[Action]')">
+			<input type="button" class="location-button" value="list" onclick="List('location')">
+		</div>
+	</div>
+</div>
+<div id="movie-input" style="display:none">
+	<div align="center">
+		<table cellpadding="0" cellspacing="0" border="0" align="center">
+		<tr>
+			<td class="movie-label">Title</td>
+			<td><input type="text" class="location-data" id="title" required></td>
+		</tr>
+		<tr>
+			<td class="movie-label">article</td>
+			<td>
+				<select id="article">
+					<option value=""></option>
+					<option value="A">A</option>
+					<option value="An">An</option>
+					<option value="The">The</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="movie-label">year</td>
+			<td><input type="text" class="location-data" id="release" required></td>
+		</tr>
+		<tr>
+			<td class="movie-label">duration</td>
+			<td><input type="text" class="location-data" id="duration" required></td>
+		</tr>
+		<tr>
+			<td class="movie-label">chroma</td>
+			<td><input type="text" class="location-data" id="chroma" required></td>
+		</tr>
+		<tr>
+			<td class="movie-label">ratio</td>
+			<td><input type="text" class="location-data" id="ratio" required></td>
+		</tr>
+		<tr>
+			<td class="movie-label" valign="top">cast</td>
+			<td>
+				<table>
+				<tr>
+					<td valign="top">[Actors]</td>
+					<td valign="top">
+						<div id="actors" style="width:25vw;height:10vh;overflow:auto" align="left">[Cast]</div>
+					</td>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="100%">
+				<input type="text" id="movie-message" style="background-color:transparent;border:none;width:30vw">
+			</td>
+		</tr>
+		</table>
+		<div>	
+			<input type="hidden" id="id">
+			<input type="button" class="movie-button" value="submit" onclick="ValidateMovie('[Action]')">
+			<input type="button" class="movie-button" value="list" onclick="List('movie')">
+		</div>
+	</div>
+</div>
+<div id="heading" style="display:none">
+	<div class="title" align="center">
+		<div><input type="text" class="title" value="cinema" onclick="Home()" readonly></div>
+		<input type="button" class="menu" value="actor" onclick="List('actor')">
+		<input type="button" class="menu" value="location" onclick="List('location')">
+		<input type="button" class="menu" value="movie" onclick="List('movie')">
+	</div>
+</div>
+</body>
+
+
+
+
+<script>
+function Home()
+{
+	selected.item = 'home';
+	selected.colour = colour[selected.item];
+	document.body.style.backgroundColor = selected.colour.back;
+	
+	let page = document.getElementById('heading').innerHTML;
+	page += Subtitle('home', selected.colour.text);
+	
+	page += '<br><br><table style="font-family:papyrus;font-size:2.4vw" cellpadding="2" cellspacing="5" border="0" align="center">';
+	page += '<tr><td>actor</td><td> - </td><td>click here for a list of actor names</td></tr>';
+	page += '<tr><td>location</td><td> - </td><td>click here for a list of cities</td></tr>';
+	page += '<tr><td>movie</td><td> - </td><td>click here for a list of movies</td></tr>'; 
+	page += '</table>';
+	
+	document.getElementById('page').innerHTML = page;
+}
+
+function List(item)
+{
+/*
+	'actor' a list of actors names
+	'location' a list of cities
+	'movie' a list of movies
+*/
+	selected.item = item;
+	selected.colour = colour[selected.item];
+
+	button.list = HTMLButton({class:selected.item + '-button', value:'list', click:'List(' + "'" + selected.item + "'" + ')'});
+	button.add = HTMLButton({class:selected.item + '-button', value:'add', click:'Add(' + "'" + selected.item + "'" + ')'});
+	button.search = HTMLButton({class:selected.item + '-button', value:'search', click:'Search(' + "'" + selected.item + "'" + ')'});
+	
+	document.body.style.backgroundColor = selected.colour.back;
+
+	let http = 
+		{actor:'http://localhost:8080/cinema/actor/list'
+		,location:'http://localhost:8080/cinema/location/list'
+		,movie:'http://localhost:8080/cinema/movie/list'
+		}
+
+ 	let page = document.getElementById('heading').innerHTML;
+	page += Subtitle(selected.item + ' list', selected.colour.text);
+	
+
+	page += '<div align="center">';
+	page += '<div style="background-color:' + colour[selected.item].list + ';height:300px;width:60%;overflow:auto">';
+
+
+	fetch(http[selected.item])
+	.then
+		(response => response.text())
+	.then
+		(data => 
+			{
+				database[selected.item] = [];
+				page += '<table cellpadding="0" cellspacing="0" border="0">';
+				rows = eval(data);
+				if (rows.length == 0)
+				{
+					page += '<tr><td class="' + selected.item + '-data">The ' + selected.item.toUpperCase() + ' table is empty</td></tr></table></div>';
+				}
+				else
+				{
+					let list = [];
+					let record = '';
+					for (let i in rows)
+					{
+						switch (selected.item)
+						{
+							case 'actor'	:
+								record = new Actor(rows[i].id, rows[i].sname, rows[i].fname, '', '', '', '', '');
+								list.push(record.name('l') + '*' + record.name('d') + '*' + record.id);
+								break;
+							case 'location'	:
+								record = new Location(rows[i].id, rows[i].city, '', '', '');
+								list.push(record.city + '*' + record.city + '*' + record.id);
+								break;
+							case 'movie'	:
+								record = new Movie(rows[i].id, rows[i].title, rows[i].article, '', '', '', '', '');
+								list.push(record.name('l') + '*' + record.name('d') + '*' + record.id);
+								break;
+						}
+					}
+
+					list.sort()
+					for (i in list)
+					{
+						let record = list[i].split('*');
+						let id = record[2];
+						let lname = record[0];
+						let dname = record[1];
+						
+						database[selected.item][id] = dname;
+
+						button.view = HTMLButton({class:selected.item + '-button', value:'view', click:'View(' + id + ')'});
+						button.update = HTMLButton({class:selected.item + '-button', value:'change', click:'Change(' + id + ')'});
+						button.delete = HTMLButton({class:selected.item + '-button', value:'delete', click:'ConfirmDelete(' + id + ')'});
+						let buttons = button.view + button.update + button.delete;
+						page += '<tr>';
+						page += '<td class="' + selected.item + '-data">' + lname + '</td>';
+						page += '<td>' + buttons + '<td>';
+						page+= '</tr>';
+					}
+
+					page += '</table></div>';
+						
+					if (list.length == 1)
+					{
+						page += '<div>1 row retrieved</div>';
+						
+					}
+					else
+					{
+						page += '<div>' + list.length + ' rows retrieved</div>';
+					
+					}
+				}
+					
+				page += '<div>';
+				page += button.add;
+				page += '</div>';
+
+				document.getElementById('page').innerHTML = page;
+			}
+		)
+	.catch
+		(error => 
+			{
+				page += '<table cellpadding="0" cellspacing="0" border="0">';
+				page += '<tr><td class="Proedcure List(): ' + selected.item + '-data">' + error + '</td></tr>';
+				page += '</table></div>';
+				page += '<div>';
+				page += button.add;
+				page += '</div>';
+
+				document.getElementById('page').innerHTML = page;
+			}
+		)
+}
+
+function Add()
+{
+/*
+	Add data to a table
+	'actors' 
+		add to the ACTOR table
+		this includes location data (if selected)
+		must have a surname
+	'location' 
+		add to the LOCATION table
+		must have a city, county and a country
+	'movie' 
+		add to the MOVIE table
+		this includes actor data (if selected)
+		must have a title
+*/
+	let page = document.getElementById('heading').innerHTML;
+	page += Subtitle(selected.item + ' add', selected.colour.text);
+	
+	let input = document.getElementById(selected.item + '-input').innerHTML;
+	input = input.replace('[Action]', 'add');
+
+	switch(selected.item)
+	{
+		case 'actor':
+			// Get the HTML page for user input
+
+			input = input.replace('[BdayOptions]', CreateDateHtml('day', 'bday', 0));
+			input = input.replace('[BmonthOptions]', CreateDateHtml('month', 'bmonth', ''));
+			input = input.replace('[ByearOptions]', CreateDateHtml('year', 'byear', 0));	
+			input = input.replace('[DdayOptions]', CreateDateHtml('day', 'dday', 0));
+			input = input.replace('[DmonthOptions]', CreateDateHtml('month', 'dmonth', ''));
+			input = input.replace('[DyearOptions]', CreateDateHtml('year', 'dyear', 0));
+			
+			fetch
+				('http://localhost:8080/cinema/location/cities')
+			.then
+				(response => response.text())
+			.then
+				(data => 
+					{
+						rows = eval(data);
+						
+						if (rows.length != 0)
+						{
+							for (let i in rows)
+							{
+								database.location.push(rows[i].id + ':'+ rows[i].city + ', ' + rows[i].county + ', ' + rows[i].country);
+							}
+						}
+												
+						select.bplace = HTMLSelect({id:'bplace', label:'select a location', data:database.location});
+						select.dplace = HTMLSelect({id:'dplace', label:'select a location', data:database.location});
+						input = input.replace('[BplaceOptions]', select.bplace);
+						input = input.replace('[DplaceOptions]', select.dplace);
+						page += input;
+	
+						document.getElementById('page').innerHTML = page;		
+					}
+				)
+			.catch
+				(error => 
+					{
+						input = input.replace('[BplaceOptions]', 'Procedure Add(' + selected.item + '): - ' + error);
+						page += input;
+
+						document.getElementById('page').innerHTML = page;		
+					}
+				)
+			break;
+		case 'location':
+			page += input;		
+			document.getElementById('page').innerHTML = page;		
+			break;
+		case 'movie':
+			fetch
+				('http://localhost:8080/cinema/actor/names')
+			.then
+				(response => response.text())
+			.then
+				(data => 
+					{
+						rows = eval(data);
+						
+						database.actors = [];
+						castlist = [];
+						data = [];
+						
+						if (rows.length != 0)
+						{
+							for (let i in rows)
+							{
+								let actor = new Actor(rows[i].id, rows[i].sname, rows[i].fname);
+								database.actors[actor.id] = actor;
+								data.push(actor.id + ':' + actor.name('l'));
+							}
+						}
+						
+						
+						let actors = HTMLSelect({id:'actor', data:data, label:'Select an actor', change:'MovieAddActor(this.options[this.selectedIndex].value, this.options[this.selectedIndex].text)'});
+												
+						input = input.replace('[Actors]', actors);
+						input = input.replace('[Cast]', '');
+						page += input;
+	
+						document.getElementById('page').innerHTML = page;		
+					}
+				)
+			.catch
+				(error => 
+					{
+						input = input.replace('[BplaceOptions]', 'Procedure Add(' + selected.item + '): - ' + error);
+						page += input;
+
+						document.getElementById('page').innerHTML = page;		
+					}
+				)		
+			break;
+	}
+}
+
+function MovieAddActor(id, actor)
+{
+/*
+	this will add a actor to the cast list on the 'movie add' page
+*/
+
+
+	castlist.push({name:database.actors[id].name('d'), id:id});
+	
+	let html = '';
+	for (let i = 0; i < castlist.length;i++)
+	{
+		html += '<input type="text" style="background-color:transparent;border:none;width:20vw" value="' + castlist[i].name + '" readonly>';
+		html += '<input type="hidden" name="actor-id" value="' + castlist[i].id + '">';
+		html += '<input type="button" value="-" onclick="MovieDeleteActor(' + i + ')">';
+		html += '<br>';
+	}
+	
+	document.getElementById('actors').innerHTML = html; 
+}
+
+function MovieDeleteActor(i)
+{
+/*
+	This will take away the last actor added to the cast list
+	on the 'movie add' page
+*/
+
+	castlist.splice(i,1);
+	
+	let html = '';
+	for (let i=0; i < castlist.length;i++)
+	{
+		html += '<input type="text" style="background-color:transparent;border:none;width:20vw" value="' + castlist[i].name + '" readonly>';
+		html += '<input type="hidden" style="width:30vw" name="actor-id" value="' + castlist[i].id + '">';
+		html += '<input type="button" value="-" onclick="MovieDeleteActor(' + i + ')">';
+		html += '<br>';
+	}
+	
+	document.getElementById('actors').innerHTML = html; 
+}
+
+function ValidateActor(action)
+{
+/*
+	Validates the new (Add()) or updated(Change()) input actor data
+	if validated will either add (Insert()) or update (Update()) the data
+*/
+	let message = '';
+	
+	let year =
+		{bdate:document.getElementById('byear').value
+		,ddate:document.getElementById('dyear').value
+		}
+		
+	let month =
+		{bdate:document.getElementById('bmonth').value
+		,ddate:document.getElementById('dmonth').value
+		}
+		
+	let day =
+		{bdate:document.getElementById('bday').value
+		,ddate:document.getElementById('dday').value
+		}	
+		
+	let validation = {bdate:{failed:false}, ddate:{failed:false}}
+	
+	for (let x in validation)
+	{
+		let yr = year[x];
+		let mn = month[x];
+		let dy = day[x];
+
+		
+		if (year[x] != '1850')
+		{	
+			if (['APR', 'JUN', 'SEP', 'NOV'].includes(mn))
+			{
+				if (dy == '31')
+				{
+					validation[x].failed = true;
+				}
+			}
+		
+			if (mn == 'FEB')
+			{
+				if (dy == '29' || dy == '30' || dy == '31')
+				{
+					validation[x].failed = true;
+				}
+			}
+		}
+	}
+	
+	
+	if (document.getElementById('sname').value == '')
+	{
+		message = 'Please enter a surname';
+		document.getElementById('sname').focus();
+	}
+	else if (year['ddate'] < year['bdate'] & year['ddate'] != '1850')
+	{
+		message = 'death date is before the birth date';
+		document.getElementById('dday').focus();
+	}
+	else if (validation.bdate.failed)
+	{
+		message = 'Please enter a valid date';
+		document.getElementById('bday').focus();
+	}
+	else if (validation.ddate.failed)
+	{
+		message = 'Please enter a valid date';
+		document.getElementById('dday').focus();
+	}
+	else
+	{
+		let bdate = '';
+		let ddate = '';
+		let bplace = '';
+		let dplace = '';
+		
+		if (year['bdate'] != '1850')
+		{
+			bdate = document.getElementById('byear').value + '-' 
+					+ document.getElementById('bmonth').value + '-' 
+					+ document.getElementById('bday').value; 
+		}
+		if (year['ddate'] != '1850')
+		{
+			ddate = document.getElementById('dyear').value + '-' 
+					+ document.getElementById('dmonth').value + '-' 
+					+ document.getElementById('dday').value; 
+		}
+		
+		if (document.getElementById('bplace').value == '')
+		{
+			bplace = null;
+		}
+		else
+		{
+			let bid = document.getElementById('bplace').value;
+			let brec = database.location[bid];
+			let brecord = brec.split(', ');
+			bplace = {"id":parseInt(bid), "city":brecord[0], "county":brecord[1], "country":brecord[2]};
+		}
+		
+		if (document.getElementById('dplace').value == '')
+		{
+			dplace = null;
+		}
+		else
+		{
+			let did = document.getElementById('dplace').value;
+			let drec = database.location[did];
+			let drecord = drec.split(', ');
+			dplace = {"id":parseInt(did), "city":drecord[0], "county":drecord[1], "country":drecord[2]};
+		}
+		
+		let ac = new Actor(0, document.getElementById('sname').value, document.getElementById('fname').value, '', '', '', '', '');
+		let name = ac.name('d');
+		
+		if (action == 'add')
+		{
+			let row = 
+				{"fname":document.getElementById('fname').value
+				,"sname":document.getElementById('sname').value
+				,"bname":document.getElementById('bname').value
+				,"bdate":bdate
+				,"ddate":ddate
+				,"bplace":bplace
+				,"dplace":dplace
+				}
+				
+			Insert(row, name);
+		}
+		else
+		{
+			let row = 
+				{"id":document.getElementById('id').value
+				,"fname":document.getElementById('fname').value
+				,"sname":document.getElementById('sname').value
+				,"bname":document.getElementById('bname').value
+				,"bdate":bdate
+				,"ddate":ddate
+				,"bplace":bplace
+				,"dplace":dplace
+				}
+				
+			Update(row, name);
+		}
+	}
+	
+	document.getElementById('actor-message').value = message;
+}
+
+function ValidateLocation(action)
+{
+/*
+	Validates the new (Add()) or updated (Change()) location data
+	if validated will either add (Insert()) or update (Update()) the data
+*/
+	let message = '';
+	
+	if (document.getElementById('city').value == '')
+	{
+		message = 'Please enter a city';
+	}
+	else if (document.getElementById('county').value == '')
+	{
+		message = 'Please enter a county/state';
+	}
+	else if (document.getElementById('country').value == '')
+	{
+		message = 'Please enter a country';
+	}
+	else
+	{
+		if (action == 'add')
+		{
+			let row = 
+				{"city":document.getElementById('city').value
+				,"county":document.getElementById('county').value
+				,"country":document.getElementById('country').value
+				}
+			
+			Insert(row, document.getElementById('city').value);
+		}
+		else
+		{
+			let row = 
+				{"id":document.getElementById('id').value
+				,"city":document.getElementById('city').value
+				,"county":document.getElementById('county').value
+				,"country":document.getElementById('country').value
+				}
+		
+			Update(row, document.getElementById('city').value);
+		}
+	}
+	
+	document.getElementById('location-message').value = message;
+}
+function ValidateMovie(action)
+{
+/*
+	Validates the new (Add()) or updated (Change()) movie data
+	if validated will either add (Insert()) or update (Update()) the data
+*/
+	let message = '';
+	
+	if (document.getElementById('title').value == '')
+	{
+			message = 'Please enter a title';
+	}
+	else
+	{
+		let movie = new Movie(0, document.getElementById('title').value, document.getElementById('article').value, 0, 0, '', '');
+		
+		let cast = [];
+
+		if (document.getElementsByName('actor-id').length != 0)
+		{
+			for (let i = 0; i < document.getElementsByName('actor-id').length;i++)
+			{
+				cast.push(document.getElementsByName('actor-id')[i].value);
+			}
+		}
+		
+		if (action == 'add')
+		{
+			let row = 
+				{"title":document.getElementById('title').value
+				,"article":document.getElementById('article').value
+				,"release":document.getElementById('release').value
+				,"duration":document.getElementById('duration').value
+				,"chroma":document.getElementById('chroma').value
+				,"ratio":document.getElementById('ratio').value
+				,"cast":cast
+				}
+							
+			Insert(row, movie.name('d'));
+		}
+		else
+		{
+			let row = 
+				{"id":document.getElementById('id').value
+				,"title":document.getElementById('title').value
+				,"article":document.getElementById('article').value
+				,"release":document.getElementById('release').value
+				,"duration":document.getElementById('duration').value
+				,"chroma":document.getElementById('chroma').value
+				,"ratio":document.getElementById('ratio').value
+				,"cast":cast
+				}
+		
+			Update(row, movie.name('d'));
+		}
+	}
+	
+	document.getElementById('movie-message').value = message;
+}
+
+function Insert(row, name)
+{
+/*
+	add a new row into the appropiate table
+*/
+
+	let page = document.getElementById('heading').innerHTML;
+	page += Subtitle(selected.item + ' add', selected.colour.text);
+	let input = document.getElementById(selected.item + '-input').innerHTML;
+	let href = '';
+
+	switch (selected.item)
+	{
+		case 'actor':
+			input = input.replace('[BdayOptions]', CreateDateHtml('day', 'bday', 0));
+			input = input.replace('[BmonthOptions]', CreateDateHtml('month', 'bmonth', ''));
+			input = input.replace('[ByearOptions]', CreateDateHtml('year', 'byear', 0));
+			input = input.replace('[DdayOptions]', CreateDateHtml('day', 'dday', 0));
+			input = input.replace('[DmonthOptions]', CreateDateHtml('month', 'dmonth', ''));
+			input = input.replace('[DyearOptions]', CreateDateHtml('year', 'dyear', 0));
+			input = input.replace('[BplaceOptions]', select.bplace);
+			input = input.replace('[DplaceOptions]', select.dplace);
+			input = input.replace('[Action]', 'add');
+			href = 'http://localhost:8080/cinema/actor/add';
+			break;
+		case 'location':
+			href = 'http://localhost:8080/cinema/location/add';
+			break;
+		case 'movie':
+			
+			let list = [];
+			let data = [];
+			castlist = [];
+			
+			for (let i in database.actors)
+			{
+				list.push(database.actors[i].name('l') + ':' + database.actors[i].id);
+			}
+						
+			list.sort();
+			
+			for (i=1; i < list.length; i++)
+			{
+				let record = list[i].split(':');
+				let id = record[1];
+				let name = record[0];
+				data.push(id + ':' + name);
+			}
+						
+			let actors = HTMLSelect({id:'actor', data:data, label:'Select an actor', change:'MovieAddActor(this.options[this.selectedIndex].value, this.options[this.selectedIndex].text)'});									
+			input = input.replace('[Actors]', actors);
+			input = input.replace('[Action]', 'add');
+			input = input.replace('[Cast]', '');
+			href = 'http://localhost:8080/cinema/movie/add';
+			break
+	}
+	
+	page += input;
+
+	fetch	
+		(href,
+			{method:'post'
+			,headers:{"Content-type": "application/json" }
+			,body: JSON.stringify(row)
+			}
+		)
+	.then
+		(response => response.text())
+	.then
+		(data => 
+			{
+				document.getElementById('page').innerHTML = page;
+				document.getElementById('actors').value = '';
+				document.getElementById(selected.item + '-message').value = name + ' has been added to the database';
+			}
+		)
+	.catch
+		(error => 
+			{						
+				document.getElementById('page').innerHTML = page;
+				document.getElementById(selected.item + '-message').value = 'Procedure Insert(): ' + error;	
+			}
+		);
+}
+
+function View(id)
+{
+/*
+	View (i.e. unable to change data) the actor, location or movie data
+*/
+	let page = document.getElementById('heading').innerHTML;
+	page += Subtitle(selected.item + ' view', selected.colour.text);
+
+	let name = database[selected.item][id];
+	switch (selected.item)
+	{
+		case 'actor':
+			href = 'http://localhost:8080/cinema/actor/view/' + id;
+			break;
+		case 'location':
+			href = 'http://localhost:8080/cinema/location/view/' + id;
+			break;
+		case 'movie':
+			href = 'http://localhost:8080/cinema/movie/view/' + id;
+			break
+	}
+	page += '<div align="center">';
+	page += '<table cellpadding="0" cellspacing="5" border="0">';
+	
+	button.update = HTMLButton({class:selected.item + '-button', value:'change', click:'Change(' + id + ')'});
+	button.delete = HTMLButton({class:selected.item + '-button', value:'delete', click:'ConfirmDelete(' + id + ', ' + "'" + name + "'" + ')'});
+	let buttons = button.list + button.update + button.delete + button.add;
+	
+	fetch
+		(href)
+	.then
+		(response => response.json())
+	.then
+		(data => 
+			{	
+				let footer = '</table>';
+				footer += '<br>' + buttons;
+				footer += '</div>';
+					
+				let row = data;
+
+				switch(selected.item)
+				{
+					case 'actor'	: 
+						let actor = new Actor(row.id, row.sname,  row.fname, row.bname, row.bdate, row.bplace, row.ddate, row.dplace);
+					
+						page += ViewActor(actor);
+						fetch
+							('http://localhost:8080/cinema/actor/movies/' + actor.id)
+						.then
+							(response => response.json())
+						.then
+							(data =>
+								{
+									let rows = data;
+				
+									if (rows.length != 0)
+									{
+										page += '<tr><td class="actor-label" valign="top">movies</td><td>';
+					
+										for (let i in rows)
+										{
+											page += '<div class="actor-data">' + rows[i] + '</div>';
+										}
+										
+										page += '</td></tr>';
+									}
+									
+									page += footer;
+									document.getElementById('page').innerHTML = page;
+								}
+							)
+						.catch 
+							(error =>
+								{
+									movies += '<tr><td>Procedure View Actor(): ' + error + '</td></tr>';
+									document.getElementById('page').innerHTML = page;
+								}
+							)
+						break;
+					case 'location' : 
+						page += ViewLocation(row);
+						page += footer;
+						document.getElementById('page').innerHTML = page;
+						break;
+					case 'movie'	: 
+						page += ViewMovie(row);
+						page += footer;
+						document.getElementById('page').innerHTML = page;
+						break;
+				}
+
+			}
+		)
+	.catch 
+		(error => 
+			{
+				page += '<div>Procedure View: Error in trying to find the details of ' + name + ' - ' + error + '</div>';
+				page += buttons;
+				page += '</div>';
+				
+				document.getElementById('page').innerHTML = page;
+			}
+		)
+
+}
+
+function ViewActor(actor)
+{
+/*
+	Builds the HTML for the 'view actor' page which will then
+	be displayed by the View() procedure
+*/
+
+	let code = '';
+
+	code += '<tr><td class="actor-name" colspan="100%"><br>' + actor.name('d') + '<br></td></tr>';
+	code +='<tr><td class="actor-label">birth name</td><td class="actor-data">' + actor.bname + '</td></tr>';
+	code +='<tr><td class="actor-label">date of birth</td><td class="actor-data">' + actor.date('b') + '</td></tr>';
+	
+	if (actor.bplace == null)
+	{
+		code +='<tr><td class="actor-label">birth place</td><td class="actor-data"></td></tr>';
+	}
+	else
+	{
+		code +='<tr><td class="actor-label">birth place</td><td class="actor-data">' + actor.bplace.city + ', ' + actor.bplace.county + ', ' + actor.bplace.country + '</td></tr>';
+	}
+					
+	if (actor.ddate != '')
+	{
+		code +='<tr><td class="actor-label">date of death</td><td class="actor-data">' + actor.date('d') + '</td></tr>';
+		
+		if (actor.dplace == null)
+		{
+			code +='<tr><td class="actor-label">place of death</td><td class="actor-data"></td></tr>';
+		}
+		else
+		{
+			code +='<tr><td class="actor-label">place of death</td><td class="actor-data">' + actor.dplace.city + ', ' + actor.dplace.county + ', ' + actor.dplace.country + '</td></tr>';
+		}
+
+	}
+			
+	return code;
+}
+
+function ViewLocation(row)
+{
+/*
+	Builds the HTML for the 'view location' page which will then
+	be displayed by the View() procedure
+*/
+	let code = '';
+
+	code += '<tr><td class="location-name" colspan="100%"><br>' + row.city + '<br></td></tr>';
+	code += '<tr><td class="location-label">county</td><td class="actor-data">' + row.county + '</td></tr>';
+	code += '<tr><td class="location-label">country</td><td class="actor-data">' + row.country + '</td></tr>';
+
+	return code;
+}
+
+function ViewMovie(row)
+{
+/*
+	Builds the HTML for the 'view movie' page which will then
+	be displayed by the View() procedure
+*/
+	let code = '';
+
+	let movie = new Movie(row.id, row.title, row.article, row.release, row.duration, row.chroma, row.ratio, row.cast);
+	code += '<tr><td class="movie-name" colspan="100%"><br>' + movie.name('d') + '<br></td></tr>';
+	code +='<tr><td class="movie-label">year</td><td class="movie-data">' + movie.release + '</td></tr>';
+	code +='<tr><td class="movie-label">duration</td><td class="movie-data">' + movie.length() + '</td></tr>';
+	code +='<tr><td class="movie-label">chroma</td><td class="movie-data">' + movie.chroma + '</td></tr>';
+	code +='<tr><td class="movie-label">ratio</td><td class="movie-data">' + movie.ratio + '</td></tr>';
+	
+
+	if (movie.cast)
+	{
+		code +='<tr><td class="movie-label" valign="top">cast</td><td class="movie-data" valign="top">'; 
+		
+		for (i in movie.cast)
+		{
+			let actor = new Actor(0, movie.cast[i].sname, movie.cast[i].fname);
+			code += actor.name('d') + '<br>';
+		}
+		code += '</td></tr>';
+	}
+	else
+	{
+		code +='<tr><td class="movie-label">cast</td><td class="movie-data"></td></tr>';
+	
+	}
+
+	return code;
+}
+
+function ConfirmDelete(id)
+{
+/*
+	When a user clicks 'delete' this is the procedure that will
+	ask the user to confirm their decision. If the user clicks 'no'
+	they will be returned to the 'list' page. If the user clicks 'yes'
+	then the actor or location movie will be deleted from the table
+	and the delete screen will display a confirmation message
+*/
+
+	let page = document.getElementById('heading').innerHTML;
+	page += Subtitle(selected.item + ' delete', selected.colour.text);
+
+	let name = database[selected.item][id];
+	button.update = HTMLButton({type:'button', class:selected.item + '-button', value:'change', click:'Change(' + id + ')'});
+
+	button.no = HTMLButton({class:selected.item + '-button', value:'no', click:'List(' + "'" + selected.item + "'" + ')'});
+	button.yes = HTMLButton({class:selected.item + '-button', value:'yes', click:'Delete('+ id + ')'});
+
+	let buttons = button.add + button.update + button.list;
+	
+	page += '<div align="center">';
+	page += '<div class="' + selected.item + '-data"><br><br>Are you sure you want to delete ' + name + ' from the database?</div>';
+	page += button.no + button.yes;
+	page += '<br><br><br>';
+	page += buttons;
+	page += '</div>';
+	
+	document.getElementById('page').innerHTML = page;
+}
+
+function Delete(id)
+{
+/*
+	deletes the row from the relevant table
+*/
+	let page = document.getElementById('heading').innerHTML;
+	page += Subtitle(selected.item + ' delete', selected.colour.text);
+
+	let name = database[selected.item][id];
+	button.update = HTMLInput({type:'button', class:'actor-button', value:'update', click:'Update(' + id + ')'});
+	let buttons = button.add + button.list;
+	let href = '';
+	
+	switch (selected.item)
+	{
+		case 'actor'	: href = 'http://localhost:8080/cinema/actor/delete/' + id;break;
+		case 'location'	: href = 'http://localhost:8080/cinema/location/delete/' + id;break;
+		case 'movie'	: href = 'http://localhost:8080/cinema/movie/delete/' + id;break;
+	}
+	
+	fetch 
+		(href, {method:'post'})
+	.then
+		(response => response.text())
+	.then 
+		(data =>
+			{
+				let reply = data;
+
+				let rep = reply.split(':');
+				let code = rep[0];
+				let message = rep[1];
+
+				page += '<div align="center">';
+
+				if (code == 0)
+				{
+					page += '<div class="' + selected.item + '-data"><br><br>' + name + message + '<br><br></div>';
+				}
+				else
+				{
+					page += 
+					page += '<div class="' + selected.item + '-data"><br><br>' + message + '<br><br></div>';
+				}
+
+				page += buttons;
+
+				page += '</div>';
+
+				document.getElementById('page').innerHTML = page;
+			}
+		)
+	.catch
+		(error =>
+			{
+				page += '<div class="' + selected.item + '-data" align="center"><br>' + error + '<br></div>';
+				page += buttons;
+
+				document.getElementById('page').innerHTML = page;
+			}
+		)		
+}
+
+function Change(id)
+{
+/*
+	This is the procedure that will update data when the user clicks
+	'submit' on the 'actor change' page
+*/
+	switch (selected.item)
+	{
+		case 'actor'	: href = 'http://localhost:8080/cinema/actor/view/' + id;break;
+		case 'location'	: href = 'http://localhost:8080/cinema/location/view/' + id;break;
+		case 'movie'	: href = 'http://localhost:8080/cinema/movie/view/' + id;break;
+	}
+	
+	fetch
+		(href)
+	.then
+		(response => response.json())
+	.then
+		(data => 
+			{
+				let row = data;
+				switch (selected.item)
+				{
+					case 'actor'	: ChangeActor(row);break;
+					case 'location'	: ChangeLocation(row);break;
+					case 'movie'	: ChangeMovie(row);break;
+				}
+			}
+		)
+	.catch 
+		(error => 
+			{
+				let page = document.getElementById('heading').innerHTML;
+				page += Subtitle(selected.item + ' change', selected.colour.text);
+				page += '<div align="center">';
+				page += '<div class="' + selected.item + '-data"> Error in trying to find the details of ' + name + ' - ' + error + '</div>';
+				page += button.list + button.add;
+				page += '</div>';
+				
+				document.getElementById('page').innerHTML = page;
+			}
+		)
+
+}
+
+function ChangeActor(row)
+{
+/*
+	Builds the HTML for the input page of the 'actor' data which
+	is displayed by the Change() procedure. This page includes
+	data from the LOCATION table 
+*/
+	let page = document.getElementById('heading').innerHTML;
+	page += Subtitle(selected.item + ' change', selected.colour.text);
+
+	let actor = new Actor(row.id, row.sname,  row.fname, row.bname, row.bdate, row.bplace, row.ddate, row.dplace);
+					
+	let bdate = row.bdate.split('-');
+	let ddate = row.ddate.split('-');
+	let b = {day:bdate[2], month:bdate[1], year:bdate[0]}
+	let d = {day:ddate[2], month:ddate[1], year:ddate[0]}
+
+	let input = document.getElementById('actor-input').innerHTML;
+	input = input.replace('[BdayOptions]', CreateDateHtml('day', 'bday', b.day));
+	input = input.replace('[BmonthOptions]', CreateDateHtml('month', 'bmonth', b.month));
+	input = input.replace('[ByearOptions]', CreateDateHtml('year', 'byear', b.year));
+	input = input.replace('[DdayOptions]', CreateDateHtml('day', 'dday', d.day));
+	input = input.replace('[DmonthOptions]', CreateDateHtml('month', 'dmonth', d.month));
+	input = input.replace('[DyearOptions]', CreateDateHtml('year', 'dyear', d.year));
+	input = input.replace('[Action]', 'update');
+	
+	fetch
+		('http://localhost:8080/cinema/location/cities')
+	.then
+		(response => response.text())
+	.then
+		(data => 
+			{
+				rows = eval(data);
+				
+				if (rows.length != 0)
+				{
+					for (let i in rows)
+					{
+						database.location.push(rows[i].id + ':'+ rows[i].city + ', ' + rows[i].county + ', ' + rows[i].country);
+					}
+				}			
+						
+				if (actor.bplace == null)
+				{
+					select.bplace = HTMLSelect({id:'bplace', label:'select a location', data:database.location});
+				}
+				else
+				{
+					select.bplace = HTMLSelect({id:'bplace', label:'select a location', data:database.location, selected:actor.bplace.id});
+				}
+				if (actor.dplace == null)
+				{
+					select.dplace = HTMLSelect({id:'dplace', label:'select a location', data:database.location});
+				}
+				else
+				{
+					select.dplace = HTMLSelect({id:'dplace', label:'select a location', data:database.location, selected:actor.dplace.id});
+				}
+				input = input.replace('[BplaceOptions]', select.bplace);
+				input = input.replace('[DplaceOptions]', select.dplace);
+				page += input;
+	
+				document.getElementById('page').innerHTML = page;
+				document.getElementById('id').value = row.id;
+				document.getElementById('fname').value = row.fname;
+				document.getElementById('sname').value = row.sname;
+				document.getElementById('bname').value = row.bname;		
+			}
+		)
+	.catch
+		(error => 
+			{
+				input = input.replace('[BplaceOptions]', 'Procedure Change Actor: ' + error);
+				input = input.replace('[DplaceOptions]', 'Procedure Change Actor: ' + error);
+				page += input;
+
+				document.getElementById('page').innerHTML = page;
+				document.getElementById('id').value = row.id;
+				document.getElementById('fname').value = row.fname;
+				document.getElementById('sname').value = row.sname;
+				document.getElementById('bname').value = row.bname;			
+			}
+		)
+}
+
+function ChangeLocation(row)
+{
+/*
+	Builds the HTML for the input page of the 'location' data which
+	is displayed by the Change() procedure
+*/
+	let page = document.getElementById('heading').innerHTML;
+	page += Subtitle(selected.item + ' change', selected.colour.text);
+
+	let input = document.getElementById('location-input').innerHTML;
+	input = input.replace('[Action]', 'update');
+
+	page += input;
+
+	document.getElementById('page').innerHTML = page;
+
+	document.getElementById('id').value = row.id;
+	document.getElementById('city').value = row.city;
+	document.getElementById('county').value = row.county;
+	document.getElementById('country').value = row.country;
+
+}
+
+function ChangeMovie(row)
+{
+/*
+	Builds the HTML for the input page of the 'movie' data which
+	is displayed by the Change() procedure. This includes data
+	from the ACTOR table
+*/
+
+	let page = document.getElementById('heading').innerHTML;
+	page += Subtitle(selected.item + ' change', selected.colour.text);
+
+	let movie = new Movie(row.id, row.title, row.article, row.release, row.duration, row.chroma, row.ratio, row.cast);
+
+	let input = document.getElementById('movie-input').innerHTML;
+	input = input.replace('[Action]', 'update');
+	
+	fetch
+		('http://localhost:8080/cinema/actor/names')
+	.then
+		(response => response.text())
+	.then
+		(data => 
+			{
+				let rows = eval(data);
+	
+				let list = [];
+				data = [];
+				let cast = '';
+				database.actors = [];
+				castlist = [];
+			
+				if (rows.length != 0)
+				{
+					for (let i in rows)
+					{
+						let actor = new Actor(rows[i].id, rows[i].sname, rows[i].fname);
+						database.actors[actor.id] = actor;
+						data.push(actor.id + ':' + actor.name('l'));
+					}
+				}
+						
+				let actors = HTMLSelect({id:'actor', data:data, label:'Select an actor', change:'MovieAddActor(this.options[this.selectedIndex].value, this.options[this.selectedIndex].text)'});
+												
+				input = input.replace('[Actors]', actors);
+				
+				if (movie.cast)
+				{
+					for (let i in movie.cast)
+					{
+						let name = database.actors[movie.cast[i].id].name('d');
+						let id = movie.cast[i].id;
+						cast += '<input type="text" style="background-color:transparent;border:none;width:20vw" value="' + name + '" readonly>';
+						cast += '<input type="hidden" style="width:30vw" name="actor-id" value="' + id + '">';
+						cast += '<input type="button" value="-" onclick="MovieDeleteActor(' + i + ')">';
+						cast += '<br>';
+						castlist.push({name:name, id:id});
+					}
+				}
+								
+				input = input.replace('[Cast]', cast);
+				
+				page += input;
+	
+				document.getElementById('page').innerHTML = page;
+	
+				document.getElementById('id').value = movie.id;
+				document.getElementById('title').value = movie.title;
+				document.getElementById('article').value = movie.article;
+				document.getElementById('release').value = movie.release;
+				document.getElementById('duration').value = movie.duration;
+				document.getElementById('chroma').value = movie.chroma;
+				document.getElementById('ratio').value = movie.ratio;				
+			}
+		)
+	.catch
+		(error =>
+			{
+				let message = 'Procedure ChangeMovie(): ' + error; 
+				document.getElementById('page').innerHTML = page;
+				document.getElementById('movie-message').value = message;
+			}
+		)
+}
+
+function Update(row, name)
+{
+/*
+	Updates the data when the user clicks 'submit' on the 'change'
+	page after successfully validation
+*/	
+	switch (selected.item)
+	{
+		case 'actor'	: href = 'http://localhost:8080/cinema/actor/add';break;
+		case 'location'	: href = 'http://localhost:8080/cinema/location/add';break;
+		case 'movie'	: href = 'http://localhost:8080/cinema/movie/add';break;
+	}
+
+	fetch	
+		(href,
+			{method:'post'
+			,headers:{"Content-type": "application/json" }
+			,body: JSON.stringify(row)
+			}
+		)
+	.then
+		(response => response.text())
+	.then
+		(data => 
+			{
+				document.getElementById(selected.item + '-message').value = 'data for ' + name + ' has been updated';
+			}
+		)
+	.catch
+		(error => 
+			{						
+				document.getElementById(selected.item + '-message').value = error;	
+			}
+		);
+}
+
+
+function Subtitle(name, colour)
+{
+/*
+	Builds the HTML for the subtitle
+*/
+	let code = '<div class="subtitle" style="color:' + colour + '" align="center">' + name + '</div>';
+	
+	return code;
+}
+
+function CreateDateHtml(type, label, selected=0)
+{
+/*
+	Creates the HTML for the day, month and year buttons show on
+	the actors 'add' and 'change' pages
+*/
+				
+	let data = [];
+	
+	if (type != 'day')
+	{
+		if (type == 'month')
+		{
+			data = 
+				["JAN:January"
+				,"FEB:February"
+				,"MAR:March"
+				,"APR:April"
+				,"MAY:May"
+				,"JUN:June"
+				,"JUL:July"
+				,"AUG:August"
+				,"SEP:September"
+				,"OCT:October"
+				,"NOV:November"
+				,"DEC:December"
+				]
+		}
+		else
+		{
+			let date = new Date();
+			let curryear = date.getFullYear();
+		
+			for (i = 1850; i <= curryear; i++)
+			{
+				data.push(i + ':' + i);
+			}
+		}
+			
+		if (selected == '')
+		{
+			html = HTMLSelect({id:label, data:data});
+		}
+		else
+		{
+			html = HTMLSelect({id:label, data:data, selected:selected});
+		}
+	}
+	else
+	{	
+		for (i = 1; i < 32; i++)
+		{
+			i < 10 ? v='0'+i : v=i;
+			
+			data.push(v + ':' + i);
+		}
+
+		if (selected == '')
+		{
+			html = HTMLSelect({id:label, data:data});
+		}
+		else
+		{
+			html = HTMLSelect({id:label, data:data, selected:selected});
+		}
+	}
+
+	return html;
+}
+
+function HTMLInput(options)
+{
+/*
+	Create the HTML for an INPUT tag. The parameter 'options' must
+	be in the form of an associated array, so to create an input tag
+	for a button using the class 'any', the 'options' parameter
+	would be {type:'button', class:'any'} etc.
+
+	For 'readonly' just use {read:''}
+*/
+	(options['type'])	? type = ' type="' + options.type + '"'		: type = ' type="text"';
+	(options['class'])	? clss = ' class="' + options.class + '"'	: clss = '';
+	(options['style']) 	? style = ' style="' + options.style + '"' 	: style = '';
+	(options['value']) 	? value = ' value = "' + options.value + '"'	: value = '';
+	(options['click']) 	? click = ' onclick="' + options.click + '"'	: click = '';
+	(options['over']) 	? over = ' onmouseover="' + options.over + '"'	: over = '';
+	(options['out']) 	? out = ' onmouseoout="' + options.out+ '"'	: out = '';
+	(options['read']) 	? read = ' readonly'				: read = '';
+	
+	let input = '<input' + type + clss + style + value + click + over + out + read + '>';	
+
+	return input;
+}
+
+function HTMLButton(options)
+{
+/*
+	Create the HTML for a BUTTON tag. The parameter 'options' must
+	be in the form of an associated array, so to create a button tag
+	using the class 'any' and value 'tiger' , the 'options' parameter
+	would be {class:'any', value:'tiger'} etc.
+*/
+
+	(options['class'])	? clss = ' class="' + options.class + '"'	: clss = '';
+	(options['style']) 	? style = ' style="' + options.style + '"' 	: style = '';
+	(options['value']) 	? value = options.value 			: value = '';
+	(options['click']) 	? click = ' onclick="' + options.click + '"'	: click = '';
+	(options['over']) 	? over = ' onmouseover="' + options.over + '"'	: over = '';
+	(options['out']) 	? out = ' onmouseoout="' + options.out+ '"'	: out = '';
+	(options['read']) 	? read = ' readonly'				: read = '';
+	
+	let input = '<button' + clss + style + click + over + out + '>' + value  + '</button>';	
+
+	return input;
+}
+
+
+
+function HTMLSelect(options)
+{
+/*
+	Create the HTML for the SELECT tag. The options parameter is
+	an associated array.
+	
+	The options.data parameter is also an array and if it is empty
+	it will only produce '<select></select>'
+	
+	if options.data = ['5:five', '6:six', '7:seven'] the HTML
+	will look like this (assuming all other options are empty)
+	
+	<select>
+		<options value="5">five</options>
+		<options value="6">six</options>
+		<options value="7">seven</options>
+	</select>
+	
+	To put an instruction at the top of the list use options.label
+	
+	options = {label:'Please select an item', id:'item'}
+	
+	<select id="item">
+		<options value="">Please select an item</options>
+	</select>
+	
+*/
+
+	(options['class'])		? clss = ' class="' + options.class + '"'		: clss = '';
+	(options['style']) 		? style = ' style="' + options.style + '"' 		: style = '';
+	(options['value']) 		? value =  ' value="' + options.value + '"' 	: value = '';
+	(options['click']) 		? click = ' onclick="' + options.click + '"'	: click = '';
+	(options['change']) 	? change = ' onchange="' + options.change + '"'	: change = '';
+	(options['over']) 		? over = ' onmouseover="' + options.over + '"'	: over = '';
+	(options['out']) 		? out = ' onmouseoout="' + options.out + '"'	: out = '';
+	(options['name']) 		? name = ' name="' + options.name + '"' 		: name=''; 
+	(options['id']) 		? id = ' id="' + options.id + '"'				: id = '';
+	(options['selected'])	? sel = options.selected					: sel = '';
+	(options['data'])		? data = options.data							: data = [];
+						
+	let html = '<select' + id + name + click + change + '>';
+	
+	if (options.label)
+	{
+		html += '<option value="">' + options.label + '</option>';
+	}
+	
+	for (let i = 0; i < data.length;i++)
+	{
+		let rec = data[i].split(':');
+		let val = rec[0];
+		let lab = rec[1];
+		
+		if (sel == val)
+		{
+			html += '<option value="' + val + '" selected>' + lab + '</option>';
+		}
+		else
+		{
+			html += '<option value="' + val + '">' + lab + '</option>';
+		
+		}
+	}
+	
+	html += '</select>';
+	
+	return html;
+}
+
+</script>
+</hmtl>
