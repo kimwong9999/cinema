@@ -20,7 +20,7 @@ ACTOR
     bdate   - birth date
     bplace  - locaton of birth taken from the LOCATION table (one-to-one relationship)
     ddate   - date of death
-    dplace  - location of death taken the the LOCATION table (many-to-one relationship)
+    dplace  - location of death taken the the LOCATION table (one-to-one relationship)
     
 LOCATION    
     
